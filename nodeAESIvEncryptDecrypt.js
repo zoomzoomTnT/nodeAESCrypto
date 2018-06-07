@@ -1,16 +1,7 @@
 "use strict";
 const crypto = require("crypto");
 
-const EncryptionHelper = (function () {
-
-    function getKeyIVBuffer(alg, key, callback) {
-        let keyBuffer = Buffer.from(key);
-        let ivBuffer = alg === "aes-256-ecb" ? Buffer.alloc(0) : Buffer.alloc(16); //ECB doesn't utilize an IV
-        callback({
-            iv: ivBuffer,
-            key: keyBuffer
-        });
-    }
+const Encryption = (function () {
 
     function encrypt(alg, key, iv, msg, encoding = "base64", msgEnc = 'utf8') {
 
@@ -33,6 +24,13 @@ const EncryptionHelper = (function () {
         return result;
     }
 
+    function getKeyIVBuffer(alg, key, callback) {
+        callback({
+            iv: alg === "aes-256-ecb" ? Buffer.alloc(0) : Buffer.alloc(16), //ECB doesn't utilize an IV
+            key: Buffer.from(key)
+        });
+    }
+
     return {
         ALGO: {
             "AES_256_ECB": "aes-256-ecb",
@@ -46,8 +44,6 @@ const EncryptionHelper = (function () {
     };
 })();
 
-module.exports = EncryptionHelper;
+module.exports = Encryption;
 
-
-/*       */
 
