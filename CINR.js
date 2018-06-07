@@ -28,7 +28,7 @@ const userInfo = function (email) { //acts like a user account data
                     },
                     sendEmail: function (to, callback) { //Send a digital signature payload containing few information to someone else
                         callback({
-                            content: "email text",
+                            content: "email context",
                             hash: hashEmail,
                             sig: signature
                         });
