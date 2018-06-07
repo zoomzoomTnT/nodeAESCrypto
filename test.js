@@ -1,3 +1,4 @@
+"use strict";
 let encryption = require("./nodeAESIvEncryptDecrypt.js");
 let assert = require("assert");
 let plainText = "This is Zoomzoom";
